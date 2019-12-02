@@ -1,0 +1,159 @@
+﻿<Window x:Class="SchoolMag.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolMag"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800" Background="{x:Null}" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="#FFB2DEA5" BorderBrush="White" CornerRadius="10" Grid.RowSpan="2" BorderThickness="1"/>
+
+
+            <Grid Grid.Row="0" x:Name="gBar" Height="40" VerticalAlignment="Top" 
+               Cursor="Hand" MouseDown="gBar_MouseDown" >
+
+                <Border  Background="LightGray" CornerRadius="10,10,0,0">
+                    <Label Content="Best School Magazine " Margin="50,0,0,0" FontFamily="Tahoma" FontSize="22" Focusable="True" Foreground="ForestGreen" HorizontalAlignment="Left" FontWeight="Bold"/>
+                </Border>
+
+                <Button x:Name="BtnClose" Content="X" Height="40" Width="60"
+                        VerticalAlignment="Top" HorizontalAlignment="Right" 
+                        FontFamily="Tahoma" FontSize="24"  Background="Red" Foreground="White"
+
+                    Style="{StaticResource CloseButton}"
+                    Click="BtnClose_Click"/>
+            </Grid>
+
+            <TabControl Grid.Row="1" Margin="5">
+                <TabItem Header="Subjects" Width="80">
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="400"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <ToolBar Grid.Row="0" Grid.Column="0" >
+                                <Button     x:Name="AddSubjectTextBox" Content="Add Subject" Margin="5" Click="AddSubjectTextBox_Click"/>
+                                <Separator/>
+                                <Button     x:Name="EditSubjectTextBox" Content="Edit Subject" Margin="5" Click="EditSubjectTextBox_Click"/>
+                                <Separator/>
+                                <Button     x:Name="DeleteSubjectTextBox" Content="Delete Subject" Margin="5" Click="DeleteSubjectTextBox_Click"/>
+                                <Separator/>
+                                <Button     x:Name="RefreshSubjectTextBox" Content="Refresh" Margin="5" Click="RefreshSubjectTextBox_Click"/>
+                            </ToolBar>
+
+                            <DataGrid Name="SubjectDataGrid" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False">
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn Header="School Subject" Binding="{Binding Subject}" Width="2*"/>
+                                    <DataGridTextColumn Header="Lead teacher"   Binding="{Binding LeadTeacher}" Width="2*"/>
+                                    <DataGridTextColumn Header="Class year"     Binding="{Binding ClassYear}" Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+
+
+                        <Grid x:Name="AddSubGrid" Grid.Column ="1" Grid.Row="1" Margin="2" Visibility="Hidden">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <Label Name="SubjectColumn"  Grid.Row="0" Grid.Column ="1"
+                               Content="Add Subject" HorizontalAlignment="Center" FontFamily="Tahoma" FontSize="20" Focusable="True" Foreground="ForestGreen"  FontWeight="Bold"/>
+
+                            <StackPanel Grid.Row="1" Margin="5,0,5,0">
+                                <Label Content="Subject" Foreground="Black"/>
+                                <TextBox x:Name="SubjectTextBox" Background="LightGray" Foreground="Black" FontSize="18"/>
+                                <Label Content="Lead teacher" Foreground="Black"/>
+                                <TextBox x:Name="LeadTeacherTextBox" Background="LightGray" Foreground="Black" FontSize="18"/>
+                                <Label Content="Class year" Foreground="Black"/>
+                                <TextBox x:Name="ClassYearTextBox" Background="LightGray" Foreground="Black" FontSize="18"/>
+                            </StackPanel>
+                            <Grid Grid.Row="2" Margin="5,0,5,0">
+                                <Button x:Name="AddSubButton"      Content="Add" Background="ForestGreen" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Width="80" Click="AddSubButton_Click"/>
+                                <Button x:Name="EditSubButton"     Content="Edit" Background="ForestGreen" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Width="80" Click="EditSubButton_Click"/>
+                                <Button x:Name="CancelButton"      Content="Cancel" Background="Red" Foreground="Black" FontSize="18" HorizontalAlignment="Right" Width="80" Click="CancelButton_Click"/>
+                            </Grid>
+                        </Grid>
+                        <TextBlock Grid.Column ="2" TextWrapping="Wrap"
+                               Text="Here could be your advertising." HorizontalAlignment="Center" FontFamily="Tahoma" FontSize="20" Focusable="True" Foreground="ForestGreen"  FontWeight="Bold" Height="226" Margin="10,0" VerticalAlignment="Center" Width="170"/>
+
+                    </Grid>
+
+
+                </TabItem>
+
+                <TabItem Header="Classes" Width="80">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="400"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <ToolBar Grid.Row="0" Grid.Column="0" >
+                            <Button Content="Add Subject" Margin="5"/>
+                            <Separator/>
+                            <Button Content="Edit Subject" Margin="5"/>
+                            <Separator/>
+                            <Button Content="Delete Subject" Margin="5"/>
+                            <Separator/>
+                            <Button Content="Refresh" Margin="5"/>
+                        </ToolBar>
+
+                        <DataGrid Name="ClassGridBox" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False">
+                            <DataGrid.Columns >
+                                <DataGridTextColumn Header="Class"        Binding="{Binding Subject}" Width="2*"/>
+                                <DataGridTextColumn Header="Lead teacher"   Binding="{Binding LeadTeacher}" Width="2*"/>
+                                <DataGridTextColumn Header="Class year"     Binding="{Binding ClassYear}" Width="*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Label Name="ClassColumn"  Grid.Row="0" Grid.Column ="1"
+                               Content="Add Class" HorizontalAlignment="Center" FontFamily="Tahoma" FontSize="20" Focusable="True" Foreground="ForestGreen"  FontWeight="Bold"/>
+
+                        <Grid Grid.Column ="1" Grid.Row="1" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Margin="5,0,5,0">
+                                <Label Content="Class" Foreground="Black"/>
+                                <TextBox x:Name="ClassTextBox" Background="LightGray" Foreground="Black" FontSize="18"/>
+                                <Label Content="Student's Count" Foreground="Black"/>
+                                <TextBox x:Name="StudentsCountTextBox" Background="LightGray" Foreground="Black" FontSize="18"/>
+                                <Label Content="Class teacher" Foreground="Black"/>
+                                <TextBox x:Name="ClassTeacherTextBox" Background="LightGray" Foreground="Black" FontSize="18"/>
+                            </StackPanel>
+                            <Grid Grid.Row="1" Margin="5,0,5,0">
+                                <Button x:Name="ClassAddButton"      Content="Add" Background="ForestGreen" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Width="80"/>
+                                <Button x:Name="ClassEditButton"     Content="Edit" Background="ForestGreen" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Width="80" Visibility="Hidden"/>
+                                <Button x:Name="ClassCancelButton"   Content="Cancel" Background="Red" Foreground="Black" FontSize="18" HorizontalAlignment="Right" Width="80"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+
+
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>
